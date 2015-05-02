@@ -27,6 +27,10 @@ char msg[128];
 void endTest(char *str) {
   if(morseEncoder->isPlayingMorse())
     return;
+  if(String(cur) == "n") { // new word on 'n' letter
+    startTest();
+    return;
+  }
   Serial.print("End Test - ");
   if(String(str) != String(cur)) {
     Serial.println(str);
@@ -55,5 +59,17 @@ void loop() {
   morseEncoderQuick->loopPlayMorse();
   
   morseDecoder->loopDecodeMorse();
-  //Serial.println(analogRead(DECODING_KEY_PIN));delay(100);
+  
+  // key sound
+  if(!morseEncoder->isPlayingMorse() && !morseEncoderQuick->isPlayingMorse()) {
+    if(morseDecoder->testPin()) {
+      MorseEncoder::buzzerOn(ENCODING_BUZZER_PIN);  
+    } else {
+      MorseEncoder::buzzerOff(ENCODING_BUZZER_PIN);
+    } 
+  } else {
+    // to stop replay - simply press the button
+    morseEncoder->resetEncoder();
+    morseEncoderQuick->resetEncoder();
+  }
 }
