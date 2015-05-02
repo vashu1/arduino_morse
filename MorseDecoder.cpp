@@ -80,10 +80,11 @@ char MorseDecoder::searchCode(String code) {
   Serial.println(code);
   //Serial.println("decodeCode="+code);//debug
   if(code.length() == 0)
-	return 0;
-  for(int i = 0; i < sizeof(ENCODER_CHAR_TABLE)-1 ; i++) 
-	if(code == ENCODER_MORSE_TABLE[i]) 
-	  return ENCODER_CHAR_TABLE[i];
+    return 0;
+  for(int i = 0; ENCODER_MORSE_TABLE[i] != 0 ; i++)
+    if(code == ENCODER_MORSE_TABLE[i]) 
+      return ENCODER_CHAR_TABLE[i];
+
   return '*';
 }
 

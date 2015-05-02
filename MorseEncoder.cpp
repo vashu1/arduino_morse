@@ -116,7 +116,7 @@ void MorseEncoder::resetEncoder() {
 }
 
 void MorseEncoder::searchCurrentCharInTable() {
-  for(int i = 0; i<sizeof(ENCODER_CHAR_TABLE)-1 ; i++) {
+  for(int i = 0; ENCODER_MORSE_TABLE[i] != 0 ; i++) {
 	if(currentString[0] == ENCODER_CHAR_TABLE[i]) {
 	  encodingCharTableIndex = i;
 	  dashDotPauseIndex = 0;
