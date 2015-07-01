@@ -22,7 +22,6 @@ void MorseDecoder::loopDecodeMorse() {
 	if(interval<10) {//TODO better
 	  if(dashDotBufferSize == 0)
 		return;
-	  Serial.print("j");//debug
 	  dashDotBuffer[dashDotBufferSize-1] += interval & ~0x1; 
 	  return;
 	}
@@ -108,7 +107,7 @@ char MorseDecoder::decodeChar(int &bufferPosition) {
 }
 
 void MorseDecoder::decodeWord() {
-  Serial.println("decodeWord");//debug
+  Serial.println(F("decodeWord"));//debug
   for(int j=0; j<dashDotBufferSize ; j++) {
 	Serial.print(dashDotBuffer[j]);Serial.print(" ");
   }
@@ -159,8 +158,8 @@ void MorseDecoder::fixDotSettings(){
 	  letterPauseSize += (int)((letterPauseSize - dashSize) * fixMul);
 	}
   }
-  Serial.print("dotSize=");Serial.println(dotSize);//debug
-  Serial.print("dashSize=");Serial.println(dashSize);
-  Serial.print("dotPauseSize=");Serial.println(dotPauseSize);
-  Serial.print("letterPauseSize=");Serial.println(letterPauseSize);
+  Serial.print(F("dotSize="));Serial.println(dotSize);//debug
+  Serial.print(F("dashSize="));Serial.println(dashSize);
+  Serial.print(F("dotPauseSize="));Serial.println(dotPauseSize);
+  Serial.print(F("letterPauseSize="));Serial.println(letterPauseSize);
 }

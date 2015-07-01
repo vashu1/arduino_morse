@@ -20,13 +20,12 @@ char *cur = new char[VOCABULARY_MAX_WORD_SIZE + 1];
 void startTest() {
   randomSeed(millis());
   //TODO Serial.println(F("This string will be stored in flash memory"));
-  Serial.print("Start Test - ");
+  Serial.print(F("Start Test - "));
   getVocabularyWord(cur);
   Serial.println(cur);
   morseEncoder->playMorse(cur);
 }
 
-char msg[128];
 void endTest(char *str) {
   if(morseEncoder->isPlayingMorse())
     return;
@@ -34,7 +33,7 @@ void endTest(char *str) {
     startTest();
     return;
   }
-  Serial.print("End Test - ");
+  Serial.print(F("End Test - "));
   if(String(str) != String(cur)) {
     Serial.println(str);
     Serial.println(cur);
