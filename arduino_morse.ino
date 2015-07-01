@@ -1,7 +1,7 @@
 #include "MorseEncoder.h"
 #include "MorseDecoder.h"
 
-const int ENCODING_BUZZER_PIN = A1;
+const int ENCODING_BUZZER_PIN = 10;//A1;
 MorseEncoder *morseEncoder = new MorseEncoder(ENCODING_BUZZER_PIN, 100);
 MorseEncoder *morseEncoderQuick = new MorseEncoder(ENCODING_BUZZER_PIN, 35);
 
