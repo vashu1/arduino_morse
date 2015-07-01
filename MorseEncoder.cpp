@@ -96,7 +96,7 @@ void MorseEncoder::loopPlayMorse() {
 }
 
 // returns false if encoder is buzy or str is too long
-boolean MorseEncoder::playMorse(const char *str) {
+boolean MorseEncoder::playMorse(String str) {
   if(isPlayingMorse())
 	return false;
   currentString = String(str);// copy constructor 

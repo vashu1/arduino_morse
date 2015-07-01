@@ -1,6 +1,6 @@
 #include "MorseSettings.h"
 
-const char ENCODER_CHAR_TABLE[] = " abcdefghijklmnopqrstuwxyz1234567890\0"; // we add trailing zero so that we can print it if needed
+const char ENCODER_CHAR_TABLE[] = " abcdefghijklmnopqrstuvwxyz1234567890\0"; // we add trailing zero so that we can print it if needed
 
 const char ENCODER_MORSE_TABLE[sizeof(ENCODER_CHAR_TABLE)-1][6] = {// [6] - max length if str
 	 " "// SPACE  1
