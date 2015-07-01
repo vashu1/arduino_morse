@@ -16,19 +16,21 @@ MorseEncoder *morseEncoder = new MorseEncoder(ENCODING_BUZZER_PIN, ENCODING_SPEE
 MorseEncoder *morseEncoderQuick = new MorseEncoder(ENCODING_BUZZER_PIN, ENCODING_SPEED / 3);
 MorseDecoder *morseDecoder = new MorseDecoder(DECODING_KEY_PIN, DECODING_SPEED);
 
-char *cur = 0;
+char *cur = new char[VOCABULARY_MAX_WORD_SIZE + 1];
 void startTest() {
   randomSeed(millis());
+  //TODO Serial.println(F("This string will be stored in flash memory"));
   Serial.print("Start Test - ");
-  cur = vocabulary[random(0, sizeof(vocabulary) / sizeof(vocabulary[0]))];
+  getVocabularyWord(cur);
   Serial.println(cur);
   morseEncoder->playMorse(cur);
 }
+
 char msg[128];
 void endTest(char *str) {
   if(morseEncoder->isPlayingMorse())
     return;
-  if(String(cur) == "n") { // new word on 'n' letter
+  if(String(str) == "n") { // new word on 'n' letter
     startTest();
     return;
   }
