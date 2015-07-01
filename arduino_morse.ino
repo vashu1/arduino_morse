@@ -1,16 +1,20 @@
 #include "MorseEncoder.h"
 #include "MorseDecoder.h"
 
-const int ENCODING_BUZZER_PIN = 10;//A1;
-MorseEncoder *morseEncoder = new MorseEncoder(ENCODING_BUZZER_PIN, 100);
-MorseEncoder *morseEncoderQuick = new MorseEncoder(ENCODING_BUZZER_PIN, 35);
-
-const int DECODING_KEY_PIN = A3;
-MorseDecoder *morseDecoder = new MorseDecoder(DECODING_KEY_PIN, 100);
 
 #define _ETAIMN_
 #define _O_
 #include "Vocabulary.h"
+
+const int ENCODING_BUZZER_PIN = 10;//A1;
+const int ENCODING_SPEED = 100;
+const int DECODING_KEY_PIN = A3;
+const int DECODING_SPEED = 100;
+
+
+MorseEncoder *morseEncoder = new MorseEncoder(ENCODING_BUZZER_PIN, ENCODING_SPEED);
+MorseEncoder *morseEncoderQuick = new MorseEncoder(ENCODING_BUZZER_PIN, ENCODING_SPEED / 3);
+MorseDecoder *morseDecoder = new MorseDecoder(DECODING_KEY_PIN, DECODING_SPEED);
 
 char *cur = 0;
 void startTest() {
