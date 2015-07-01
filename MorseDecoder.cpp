@@ -91,7 +91,7 @@ char MorseDecoder::searchCode(String code) {
 char MorseDecoder::decodeChar(int &bufferPosition) {
   if(bufferPosition >= dashDotBufferSize)
 	  return 0;
-  String code = String("");
+  String code = "";
   while(1) {
 	boolean   pip = dashDotBuffer[bufferPosition  ] & 0x1;
 	int  interval = dashDotBuffer[bufferPosition++];
@@ -113,7 +113,7 @@ void MorseDecoder::decodeWord() {
 	Serial.print(dashDotBuffer[j]);Serial.print(" ");
   }
   Serial.println(" ");;
-  String result = String("");
+  String result = "";
   
   char cur;
   int bufferPosition = 0;

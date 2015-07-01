@@ -23,7 +23,7 @@ class MorseEncoder {
     void loopPlayMorse();
     
     // returns false if encoder is buzy or str is too long
-    boolean playMorse(const char *str);
+    boolean playMorse(String str);
     
     boolean isPlayingMorse();
     
@@ -36,7 +36,7 @@ class MorseEncoder {
     void (* ENCODING_MORSE_ON)(int);
     void (* ENCODING_MORSE_OFF)(int);
     
-    char *currentString;
+    String currentString;
     int encodingCharTableIndex;
     char dashDotPauseIndex;
     unsigned long waitTillMsec; // no checks for 50th day overflow!

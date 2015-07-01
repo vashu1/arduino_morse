@@ -99,17 +99,17 @@ void MorseEncoder::loopPlayMorse() {
 boolean MorseEncoder::playMorse(const char *str) {
   if(isPlayingMorse())
 	return false;
-  currentString = (char*)str; 
+  currentString = String(str);// copy constructor 
   return true;
 }
 
 boolean MorseEncoder::isPlayingMorse() {
-  return currentString != 0;
+  return currentString.length() > 0;
 }
 
 void MorseEncoder::resetEncoder() {
   //Serial.println("resetEncoder");//debug
-  currentString = 0;
+  currentString = "";
   encodingCharTableIndex = -1;
   dashDotPauseIndex = -1;
   waitTillMsec = 0;
@@ -127,9 +127,9 @@ void MorseEncoder::searchCurrentCharInTable() {
 }
 
 void MorseEncoder::removeFirstEncodingBufferChar() {
-  currentString++;
-  if(currentString[0] == 0)
-	  currentString = 0;
+  currentString = currentString.substring(1);//remove first char
+  //if(currentString[0] == 0)
+  //	  currentString = 0;
   encodingCharTableIndex = -1;
 }
 
@@ -142,6 +142,6 @@ void MorseEncoder::init() {
   dashDotPauseIndex = -1;
   waitTillMsec = 0; 
   afterDashDotGap = false;
-  currentString = 0;
+  currentString = "";
   waitTillMsec = 0;
 }

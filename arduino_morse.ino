@@ -35,8 +35,7 @@ void endTest(char *str) {
   if(String(str) != String(cur)) {
     Serial.println(str);
     Serial.println(cur);
-    String(String(str) + "   " + String(cur)).toCharArray(msg, sizeof(msg));
-    morseEncoder->playMorse(msg);
+    morseEncoder->playMorse(cur);
   } else {
       morseEncoderQuick->playMorse("ok");
       Serial.println("OK");
@@ -69,7 +68,8 @@ void loop() {
     } 
   } else {
     // to stop replay - simply press the button
-    morseEncoder->resetEncoder();
-    morseEncoderQuick->resetEncoder();
+    //TODO on unpress + jitter
+    //morseEncoder->resetEncoder();
+    //morseEncoderQuick->resetEncoder();
   }
 }

@@ -14,6 +14,8 @@ class MorseDecoder {
     
     static void printWord(char *str);
 
+    boolean testPin();
+    
     
   private:
     int dotSize;
@@ -29,8 +31,6 @@ class MorseDecoder {
     static const int DASH_DOT_BUFFER_SIZE=256;
     int dashDotBufferSize;
     unsigned short dashDotBuffer[DASH_DOT_BUFFER_SIZE];
-    
-    boolean testPin();
     
     boolean pinOn;
     long time;
