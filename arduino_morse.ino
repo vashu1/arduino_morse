@@ -8,13 +8,10 @@ MorseEncoder *morseEncoderQuick = new MorseEncoder(ENCODING_BUZZER_PIN, 35);
 const int DECODING_KEY_PIN = A3;
 MorseDecoder *morseDecoder = new MorseDecoder(DECODING_KEY_PIN, 100);
 
-//"a", "i", "e", "m", "n", "t"
-//"in", "it", "at", "an", "me", "am", "man", "ten", "men", "eat", "net", "aim", "ant", "inn", "int"
-//, "name", "mean", "main", "meet", "time", "team"
-// "amen", "anna", "ante", "anti", "emit", "item", "main", "mama", "mane", "mate", "meat", "meta", "mime", "mine", "neat", "tame", "teen", "tent", "tint", 
-// "mania", "anime", "enema", "inane", "titan", 
-char vocabulary[][5] = {
-"in", "it", "at", "an", "me", "am", "man", "ten", "men", "eat", "net", "aim", "ant", "inn", "int"};//, "name", "mean", "main", "meet", "time", "team"};
+#define _ETAIMN_
+#define _O_
+#include "Vocabulary.h"
+
 char *cur = 0;
 void startTest() {
   randomSeed(millis());
