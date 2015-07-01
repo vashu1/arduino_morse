@@ -1,0 +1,73 @@
+
+This code can be used for turning Arduino into morse learning gadget or for adding morse functionality into existing Arduino project.
+
+
+======================== Morse learning gadget
+
+Just compile this project and upload to your Arduino.
+
+Connect a button to DECODING_KEY_PIN and ground, and connect buzzer to ENCODING_BUZZER_PIN and ground. Everything is ready!
+
+Play letter 'n', '-.', dash and dot to get new training word. 
+
+Listen to it and play it back. 
+
+If you did it right you will hear "ok", '--- -.-'. 
+
+Otherwise the vord will be played again. 
+
+Input 'n' again to move to the next word.
+
+
+Edit arduino_morse.ino file
+
+ENCODING_BUZZER_PIN - sets pin for playing morse code. 10 by default.
+ENCODING_SPEED - sets speed of playing morse in msec per dot. 100 ms by default.
+DECODING_KEY_PIN - sets pin for reading morse code. A3 by default.
+DECODING_SPEED - sets speed of reading morse in msec per dot. 100 ms by default.
+
+Use #define to setup training vocabulary.
+#define _ETAIMN_- adds ETAIMN letters.
+#define _O_ - adds O letter vocabulary.
+#define _ALL_LETERS_ - adds everything.
+
+Add letters in the following order - etianmosrhdlucmfywgpbvkxqjz.
+
+
+======================== Adding morse functionality into existing Arduino project
+
+You will need the following files
+
+MorseEncoder.h  MorseEncoder.cpp  - reading morse 
+MorseDecoder.h MorseDecoder.cpp   - playing morse
+MorseSettings.h MorseSettings.cpp - common data, morse table
+
+Add includes into your project
+
+#include "MorseEncoder.h"
+#include "MorseDecoder.h"
+
+MorseEncoder *morseEncoder = new MorseEncoder(ENCODING_BUZZER_PIN, ENCODING_SPEED);
+MorseDecoder *morseDecoder = new MorseDecoder(DECODING_KEY_PIN, DECODING_SPEED);
+
+In your setup() function setup used pins
+
+  pinMode(ENCODING_BUZZER_PIN, OUTPUT);
+  pinMode(DECODING_KEY_PIN, INPUT_PULLUP);
+  
+Setup callbacks
+ 
+  morseDecoder->decodedWordCallback = endTest;
+  
+Add into loop()
+
+void loop() {
+  morseEncoder->loopPlayMorse();
+  morseDecoder->loopDecodeMorse();
+}
+
+Now every time a word is decoded, decodedWordCallback of morseDecoder will be called with decoded text as argument.
+
+To play some morse just call
+
+morseEncoder->playMorse("some morse");
